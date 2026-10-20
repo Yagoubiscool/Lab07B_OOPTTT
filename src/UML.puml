@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+
+class Game {
+  - frame: JFrame
+  - board: TTTBoard
+  - buttons: TTTTileButton[][]
+  - statusLabel: JLabel
+  + main(args: String[]): void
+}
+
+class TTTBoard {
+  - board: char[][]
+  - currentPlayer: char
+  - isGameOver: boolean
+  + resetBoard(): void
+  + makeMove(row: int, col: int): boolean
+  + checkWin(): boolean
+  + checkDraw(): boolean
+  + getCurrentPlayer(): char
+  + isGameOver(): boolean
+}
+
+class TTTTileButton {
+  - row: int
+  - col: int
+  + getRow(): int
+  + getCol(): int
+}
+
+Game o-- TTTBoard : uses >
+Game *-- "3x3" TTTTileButton : contains >
+
+@enduml
